@@ -1,0 +1,17 @@
+{
+  "name": "movie-collection-server",
+  "version": "1.0.0",
+  "description": "Servidor para Movie Collection",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.1.4",
+    "express": "^4.18.2",
+    "multer": "^2.2.0",
+    "sql.js": "^1.10.0"
+  }
+}
