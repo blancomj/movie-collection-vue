@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "echo 'dist/ already committed - no build needed'",
     "preview": "vite preview",
     "dev:server": "node server/server.js",
     "start": "cross-env NODE_ENV=production node server/server.js"
