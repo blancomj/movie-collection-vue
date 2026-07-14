@@ -9,7 +9,7 @@
       </div>
       <div class="absolute bottom-0 left-0 right-0 p-6">
         <div class="flex items-end gap-4">
-          <div class="w-32 md:w-40 flex-shrink-0">
+          <div class="w-52 md:w-64 flex-shrink-0">
             <img v-if="poster" :src="poster" :alt="movie.title" class="w-full rounded-card shadow-lg" />
           </div>
           <div class="flex-1 min-w-0 text-white">
@@ -30,7 +30,7 @@
 
     <div v-else class="bg-white dark:bg-[#1e1e2f] rounded-card shadow-sm p-6">
       <div class="flex items-end gap-4">
-        <div class="w-32 md:w-40 flex-shrink-0">
+        <div class="w-52 md:w-64 flex-shrink-0">
           <img v-if="poster" :src="poster" :alt="movie.title" class="w-full rounded-card shadow-lg" />
           <div v-else class="aspect-[2/3] rounded-card bg-gradient-to-br from-primary to-purple-700 flex items-center justify-center">
             <i class="fas fa-film text-white text-3xl"></i>

@@ -49,6 +49,8 @@
 
       <SimilarMovies :tmdb-id="movie.tmdb_id" />
 
+      <BackdropGallery :tmdb-id="movie.tmdb_id" />
+
       <TrailerModal
         :visible="showTrailer"
         :video-key="trailerKey"
@@ -70,6 +72,7 @@ import { getMovieVideos, getTmdbMovie, saveMovie } from '@/api/movies'
 import MovieHero from '@/components/movie/MovieHero.vue'
 import CastGrid from '@/components/movie/CastGrid.vue'
 import SimilarMovies from '@/components/movie/SimilarMovies.vue'
+import BackdropGallery from '@/components/movie/BackdropGallery.vue'
 import TrailerModal from '@/components/movie/TrailerModal.vue'
 import LoadingSpinner from '@/components/ui/LoadingSpinner.vue'
 

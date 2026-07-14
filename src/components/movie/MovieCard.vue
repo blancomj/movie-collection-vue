@@ -15,6 +15,8 @@
         <i class="fas fa-film text-white text-3xl"></i>
       </div>
 
+      <FavoriteButton :tmdb-id="movie.tmdb_id" />
+
       <div v-if="movie.vote_average" class="absolute top-2 right-2 bg-black/80 text-white px-2 py-1 rounded-full text-xs font-bold">
         <i class="fas fa-star text-yellow-400 mr-0.5"></i>
         {{ movie.vote_average.toFixed(1) }}
@@ -57,6 +59,7 @@ import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { usePoster } from '@/composables/usePoster'
 import ActionButton from '../ui/ActionButton.vue'
+import FavoriteButton from '../ui/FavoriteButton.vue'
 
 const props = defineProps({
   movie: { type: Object, required: true }

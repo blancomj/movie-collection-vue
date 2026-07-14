@@ -245,4 +245,14 @@ router.get('/tmdb/:id/credits', async (req, res) => {
     }
 });
 
+router.get('/tmdb/:id/images', async (req, res) => {
+    try {
+        const url = `${TMDB_BASE}/movie/${req.params.id}/images?api_key=${TMDB_API_KEY}`;
+        const data = await tmdbFetch(url);
+        res.json({ success: true, backdrops: data.backdrops || [] });
+    } catch (error) {
+        res.json({ success: true, backdrops: [] });
+    }
+});
+
 module.exports = router;

@@ -21,6 +21,14 @@
             {{ item.badge }}
           </span>
         </router-link>
+
+        <button
+          class="flex items-center justify-center w-9 h-9 rounded-full text-white/90 hover:text-white hover:bg-white/10 transition-colors ml-1"
+          :title="ui.isDark ? 'Modo claro' : 'Modo oscuro'"
+          @click="ui.toggleTheme()"
+        >
+          <i :class="ui.isDark ? 'fas fa-sun' : 'fas fa-moon'"></i>
+        </button>
       </nav>
 
       <button
@@ -38,13 +46,15 @@
 import { computed } from 'vue'
 import { useUiStore } from '@/stores/ui'
 import { useWishlistStore } from '@/stores/wishlist'
+import { useFavoritesStore } from '@/stores/favorites'
 
 const ui = useUiStore()
 const wishlist = useWishlistStore()
+const favorites = useFavoritesStore()
 
 const navItems = computed(() => [
   { to: '/', icon: 'fas fa-home', label: 'Inicio' },
-  { to: '/favoritos', icon: 'fas fa-heart', label: 'Favoritos' },
+  { to: '/favoritos', icon: 'fas fa-heart', label: 'Favoritos', badge: favorites.count || null },
   { to: '/deseadas', icon: 'fas fa-bookmark', label: 'Deseadas', badge: wishlist.count || null },
   { to: '/estadisticas', icon: 'fas fa-chart-bar', label: 'Estadisticas' },
   { to: '/configuracion', icon: 'fas fa-cog', label: 'Configuracion' }

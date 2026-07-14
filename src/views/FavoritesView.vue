@@ -18,25 +18,25 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useMoviesStore } from '@/stores/movies'
+import { useFavoritesStore } from '@/stores/favorites'
 import { useUiStore } from '@/stores/ui'
 import MovieGrid from '@/components/movie/MovieGrid.vue'
 
 const moviesStore = useMoviesStore()
+const favorites = useFavoritesStore()
 const ui = useUiStore()
 
-const favoriteIds = ref(new Set(JSON.parse(localStorage.getItem('favorites') || '[]')))
-const loading = ref(true)
+const loading = computed(() => moviesStore.loading)
 
 const favoriteMovies = computed(() =>
-  moviesStore.movies.filter(m => favoriteIds.value.has(m.tmdb_id))
+  moviesStore.movies.filter(m => favorites.isFavorite(m.tmdb_id))
 )
 
 onMounted(async () => {
   if (moviesStore.movies.length === 0) {
     await moviesStore.loadMovies()
   }
-  loading.value = false
 })
 </script>

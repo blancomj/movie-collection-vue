@@ -29,6 +29,9 @@
           >
             <i :class="item.icon" class="w-5"></i>
             {{ item.label }}
+            <span v-if="item.badge" class="ml-auto bg-red-500 text-white text-xs px-1.5 py-0.5 rounded-full">
+              {{ item.badge }}
+            </span>
           </router-link>
 
           <div class="border-t border-gray-200 dark:border-gray-700 my-2"></div>
@@ -85,6 +88,7 @@
 <script setup>
 import { computed } from 'vue'
 import { useUiStore } from '@/stores/ui'
+import { useFavoritesStore } from '@/stores/favorites'
 
 defineProps({
   open: Boolean
@@ -92,6 +96,7 @@ defineProps({
 defineEmits(['update:open'])
 
 const ui = useUiStore()
+const favorites = useFavoritesStore()
 
 const gridCols = computed(() => ui.gridCols)
 
@@ -99,12 +104,12 @@ function setGridCols(cols) {
   ui.setGridCols(cols)
 }
 
-const navItems = [
+const navItems = computed(() => [
   { to: '/', icon: 'fas fa-home', label: 'Inicio' },
-  { to: '/favoritos', icon: 'fas fa-heart', label: 'Favoritos' },
+  { to: '/favoritos', icon: 'fas fa-heart', label: 'Favoritos', badge: favorites.count || null },
   { to: '/deseadas', icon: 'fas fa-bookmark', label: 'Deseadas' },
   { to: '/estadisticas', icon: 'fas fa-chart-bar', label: 'Estadisticas' }
-]
+])
 </script>
 
 <style scoped>
