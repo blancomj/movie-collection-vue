@@ -14,7 +14,7 @@
     --bg-card: #ffffff;
     --bg-input: #ffffff;
     --text-primary: #333333;
-    --text-secondary: #666666;
+    --text-secondary: #555555;
     --text-muted: #999999;
     --border-color: #dddddd;
     --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -27,7 +27,7 @@
     --bg-card: #1e1e2f;
     --bg-input: #2a2a3d;
     --text-primary: #e0e0e0;
-    --text-secondary: #b0b0b0;
+    --text-secondary: #c8c8c8;
     --text-muted: #808080;
     --border-color: #3a3a4d;
   }
