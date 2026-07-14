@@ -202,7 +202,7 @@ function formatRuntime(minutes) {
   }
 
   .poster-container {
-    width: 260px;
+    width: 416px;
     margin-bottom: 1rem;
   }
 
@@ -226,7 +226,7 @@ function formatRuntime(minutes) {
   }
 
   .poster-container {
-    width: 220px;
+    width: 352px;
     margin-bottom: 0.5rem;
   }
 
