@@ -9,7 +9,7 @@
       </div>
       <div class="absolute bottom-0 left-0 right-0 p-6">
         <div class="flex items-end gap-4">
-          <div class="hidden md:block w-40 flex-shrink-0">
+          <div class="w-32 md:w-40 flex-shrink-0">
             <img v-if="poster" :src="poster" :alt="movie.title" class="w-full rounded-card shadow-lg" />
           </div>
           <div class="flex-1 min-w-0 text-white">

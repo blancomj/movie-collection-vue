@@ -1,7 +1,7 @@
 <template>
   <div class="max-w-7xl mx-auto px-4 py-6">
-    <div class="bg-white rounded-card shadow-sm p-6 mb-6">
-      <SearchBar v-model="moviesStore.search" @search="onSearch" />
+    <div class="bg-white dark:bg-[#1e1e2f] rounded-card shadow-sm p-6 mb-6">
+      <SearchBar v-model="moviesStore.search" @search="onSearch" class="mb-4" />
 
       <FilterControls
         :genre="moviesStore.genre"

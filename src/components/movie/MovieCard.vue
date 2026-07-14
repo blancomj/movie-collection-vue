@@ -47,6 +47,7 @@
           {{ g.name }}
         </span>
       </div>
+      <p v-if="movie.overview" class="text-xs text-gray-400 dark:text-gray-500 mt-1.5 line-clamp-3 leading-relaxed">{{ movie.overview }}</p>
     </div>
   </div>
 </template>
