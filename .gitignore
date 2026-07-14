@@ -1,5 +1,4 @@
 node_modules/
-dist/
 server/movies.db
 server/posters/*.jpg
 server/upload_temp.txt

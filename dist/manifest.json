@@ -1,0 +1,10 @@
+{
+  "name": "Movie Collection",
+  "short_name": "Movies",
+  "description": "Tu biblioteca personal de peliculas",
+  "start_url": "/peliculas/",
+  "display": "standalone",
+  "background_color": "#667eea",
+  "theme_color": "#667eea",
+  "orientation": "portrait-primary"
+}
