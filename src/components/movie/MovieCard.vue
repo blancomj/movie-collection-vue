@@ -27,7 +27,7 @@
       </div>
 
       <div class="absolute bottom-2 right-2 z-10">
-        <ActionButton :tmdb-id="movie.tmdb_id" size="sm" />
+        <ActionButton :tmdb-id="movie.tmdb_id" size="sm" readonly />
       </div>
 
       <div class="absolute inset-x-0 bottom-0 h-full bg-gradient-to-t from-black/90 via-black/50 to-transparent flex flex-col justify-end p-3 opacity-0 max-sm:hidden lg:hover:opacity-100 transition-opacity duration-300">

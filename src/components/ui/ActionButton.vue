@@ -1,5 +1,14 @@
 <template>
+  <span
+    v-if="readonly && isWished"
+    class="inline-flex items-center justify-center rounded-full bg-primary text-white shadow-md"
+    :class="sizeClasses"
+  >
+    <i class="fas fa-bookmark"></i>
+  </span>
+
   <button
+    v-else-if="!readonly"
     class="inline-flex items-center justify-center rounded-full transition-all"
     :class="sizeClasses"
     @click.stop="handleToggle"
@@ -16,7 +25,8 @@ import { useNotifications } from '@/composables/useNotifications'
 
 const props = defineProps({
   tmdbId: { type: Number, required: true },
-  size: { type: String, default: 'md' }
+  size: { type: String, default: 'md' },
+  readonly: { type: Boolean, default: false }
 })
 
 const wishlist = useWishlistStore()
