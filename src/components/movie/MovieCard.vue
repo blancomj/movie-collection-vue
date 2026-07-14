@@ -31,7 +31,7 @@
       </div>
 
       <div class="absolute inset-x-0 bottom-0 h-full bg-gradient-to-t from-black/90 via-black/50 to-transparent flex flex-col justify-end p-3 opacity-0 max-sm:hidden lg:hover:opacity-100 transition-opacity duration-300">
-        <p class="text-white text-xs leading-relaxed line-clamp-6" style="text-shadow: 0 1px 3px rgba(0,0,0,0.8);">
+        <p class="text-white text-sm leading-relaxed line-clamp-6" style="text-shadow: 0 1px 3px rgba(0,0,0,0.8);">
           {{ movie.overview || 'Sin sinopsis disponible.' }}
         </p>
         <span class="text-primary text-[10px] font-semibold mt-1.5 flex items-center gap-1">
