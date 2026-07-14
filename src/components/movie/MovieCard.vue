@@ -22,7 +22,7 @@
         {{ movie.vote_average.toFixed(1) }}
       </div>
 
-      <div v-if="movie.year" class="absolute top-2 left-2 bg-primary/90 text-white px-2 py-1 rounded-full text-xs font-bold">
+      <div v-if="movie.year" class="absolute top-2 left-10 bg-primary/90 text-white px-2 py-1 rounded-full text-xs font-bold">
         {{ movie.year }}
       </div>
 
