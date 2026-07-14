@@ -30,7 +30,7 @@
         <ActionButton :tmdb-id="movie.tmdb_id" size="sm" />
       </div>
 
-      <div class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex flex-col justify-end p-3 opacity-0 hover:opacity-100 transition-opacity duration-300">
+      <div class="absolute inset-x-0 bottom-0 h-full bg-gradient-to-t from-black/90 via-black/50 to-transparent flex flex-col justify-end p-3 opacity-0 max-sm:hidden lg:hover:opacity-100 transition-opacity duration-300">
         <p class="text-white text-xs leading-relaxed line-clamp-3" style="text-shadow: 0 1px 3px rgba(0,0,0,0.8);">
           {{ movie.overview || 'Sin sinopsis disponible.' }}
         </p>
@@ -52,6 +52,7 @@
           {{ g.name }}
         </span>
       </div>
+      <p v-if="movie.overview" class="text-sm text-gray-600 dark:text-gray-300 mt-1.5 line-clamp-3 leading-relaxed lg:hidden">{{ movie.overview }}</p>
     </div>
   </div>
 </template>
