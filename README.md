@@ -107,7 +107,7 @@ La aplicación está desplegada en **Hostinger Hosting de Apps Web** con integra
 
 ### Configuración en Hostinger
 
-- **Repositorio**: `https://github.com/blancomj/movie-collection.git`
+- **Repositorio**: `https://github.com/blancomj/movie-collection-vue.git`
 - **Startup file**: `server/server.js`
 - **Database path**: `/home/u434343788/sqlite/movies.db`
 - **Build script**: Deshabilitado (`echo 'no build needed'`)
