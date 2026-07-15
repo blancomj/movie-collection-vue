@@ -31,13 +31,16 @@ import BottomNav from '@/components/layout/BottomNav.vue'
 import AppDrawer from '@/components/layout/AppDrawer.vue'
 import { useUiStore } from '@/stores/ui'
 import { useWishlistStore } from '@/stores/wishlist'
+import { useWatchedStore } from '@/stores/watched'
 
 const ui = useUiStore()
 const wishlist = useWishlistStore()
+const watched = useWatchedStore()
 
 onMounted(() => {
   ui.initTheme()
   wishlist.load()
+  watched.load()
 })
 </script>
 
