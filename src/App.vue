@@ -32,15 +32,18 @@ import AppDrawer from '@/components/layout/AppDrawer.vue'
 import { useUiStore } from '@/stores/ui'
 import { useWishlistStore } from '@/stores/wishlist'
 import { useWatchedStore } from '@/stores/watched'
+import { useFavoritesStore } from '@/stores/favorites'
 
 const ui = useUiStore()
 const wishlist = useWishlistStore()
 const watched = useWatchedStore()
+const favorites = useFavoritesStore()
 
 onMounted(() => {
   ui.initTheme()
   wishlist.load()
   watched.load()
+  favorites.load()
 })
 </script>
 

@@ -102,6 +102,13 @@ function createTables() {
     } catch (e) {
         // Column already exists
     }
+
+    // Add favorite column if not exists
+    try {
+        db.run(`ALTER TABLE movies ADD COLUMN favorite INTEGER DEFAULT 0`);
+    } catch (e) {
+        // Column already exists
+    }
 }
 
 function getAllMovies() {
@@ -304,6 +311,28 @@ function isWatched(tmdbId) {
     return results[0].values[0][0] === 1;
 }
 
+function getFavoriteMovies() {
+    const results = db.exec('SELECT * FROM movies WHERE favorite = 1 ORDER BY original_title');
+    if (!results.length) return [];
+    return parseResults(results[0]).map(parseMovie);
+}
+
+function toggleFavorite(tmdbId) {
+    const current = db.exec('SELECT favorite FROM movies WHERE tmdb_id = ?', [tmdbId]);
+    if (!current.length || !current[0].values.length) return null;
+    const isFav = current[0].values[0][0] ? 1 : 0;
+    const newVal = isFav ? 0 : 1;
+    db.run('UPDATE movies SET favorite = ?, updated_at = CURRENT_TIMESTAMP WHERE tmdb_id = ?', [newVal, tmdbId]);
+    saveDatabase();
+    return { favorite: newVal === 1 };
+}
+
+function isFavorite(tmdbId) {
+    const results = db.exec('SELECT favorite FROM movies WHERE tmdb_id = ?', [tmdbId]);
+    if (!results.length || !results[0].values.length) return false;
+    return results[0].values[0][0] === 1;
+}
+
 function closeDatabase() {
     if (db) {
         saveDatabase();
@@ -330,5 +359,8 @@ module.exports = {
     getWatchedMovies,
     toggleWatched,
     isWatched,
+    getFavoriteMovies,
+    toggleFavorite,
+    isFavorite,
     closeDatabase
 };

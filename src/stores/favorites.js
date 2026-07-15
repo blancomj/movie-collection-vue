@@ -1,10 +1,11 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-
-const STORAGE_KEY = 'movie-collection-favorites'
+import { getFavoriteMovies as apiGetFavorites, toggleFavorite as apiToggleFavorite } from '@/api/movies'
 
 export const useFavoritesStore = defineStore('favorites', () => {
-  const favoriteIds = ref(new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')))
+  const favoriteIds = ref(new Set())
+  const favoriteMovies = ref([])
+  const loading = ref(false)
 
   const count = computed(() => favoriteIds.value.size)
 
@@ -12,19 +13,34 @@ export const useFavoritesStore = defineStore('favorites', () => {
     return favoriteIds.value.has(tmdbId)
   }
 
-  function toggle(tmdbId) {
-    if (favoriteIds.value.has(tmdbId)) {
-      favoriteIds.value.delete(tmdbId)
-    } else {
-      favoriteIds.value.add(tmdbId)
+  async function load() {
+    loading.value = true
+    try {
+      const data = await apiGetFavorites()
+      const movies = data.movies || []
+      favoriteMovies.value = movies
+      favoriteIds.value = new Set(movies.map(m => m.tmdb_id))
+    } catch (e) {
+      console.error('Failed to load favorites:', e)
+    } finally {
+      loading.value = false
     }
-    save()
-    return favoriteIds.value.has(tmdbId)
   }
 
-  function save() {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify([...favoriteIds.value]))
+  async function toggle(tmdbId) {
+    try {
+      const data = await apiToggleFavorite(tmdbId)
+      if (data.favorite) {
+        favoriteIds.value.add(tmdbId)
+      } else {
+        favoriteIds.value.delete(tmdbId)
+      }
+      return data.favorite
+    } catch (e) {
+      console.error('Failed to toggle favorite:', e)
+      throw e
+    }
   }
 
-  return { favoriteIds, count, isFavorite, toggle }
+  return { favoriteIds, favoriteMovies, loading, count, isFavorite, load, toggle }
 })

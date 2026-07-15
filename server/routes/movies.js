@@ -3,7 +3,7 @@ const router = express.Router();
 const path = require('path');
 const fs = require('fs');
 const { POSTERS_DIR } = require('../paths');
-const { getAllMovies, getMovieById, upsertMovie, deleteMovie, searchMovies, getStats, getConfigValue, setConfigValue, getWantedMovies, toggleWanted, getWatchedMovies, toggleWatched } = require('../database');
+const { getAllMovies, getMovieById, upsertMovie, deleteMovie, searchMovies, getStats, getConfigValue, setConfigValue, getWantedMovies, toggleWanted, getWatchedMovies, toggleWatched, getFavoriteMovies, toggleFavorite } = require('../database');
 
 // GET /api/movies - Obtener todas las películas
 router.get('/', (req, res) => {
@@ -121,6 +121,29 @@ router.patch('/:id/watched', (req, res) => {
             return res.status(404).json({ success: false, error: 'Película no encontrada' });
         }
         res.json({ success: true, watched: result.watched });
+    } catch (error) {
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
+// GET /api/movies/favorite - Obtener películas favoritas
+router.get('/favorite', (req, res) => {
+    try {
+        const movies = getFavoriteMovies();
+        res.json({ success: true, total: movies.length, movies });
+    } catch (error) {
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
+// PATCH /api/movies/:id/favorite - Toggle estado favorito
+router.patch('/:id/favorite', (req, res) => {
+    try {
+        const result = toggleFavorite(parseInt(req.params.id));
+        if (result === null) {
+            return res.status(404).json({ success: false, error: 'Película no encontrada' });
+        }
+        res.json({ success: true, favorite: result.favorite });
     } catch (error) {
         res.status(500).json({ success: false, error: error.message });
     }
