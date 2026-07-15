@@ -17,11 +17,5 @@ export default defineConfig({
   },
   projects: [
     { name: 'chromium', use: { browserName: 'chromium' } }
-  ],
-  webServer: {
-    command: 'npm run dev:all',
-    url: 'http://localhost:5173/peliculas',
-    reuseExistingServer: !process.env.CI,
-    timeout: 90000
-  }
+  ]
 })

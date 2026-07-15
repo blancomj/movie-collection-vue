@@ -11,9 +11,9 @@
     "dev:server": "node server/server.js",
     "dev:all": "concurrently \"node server/server.js\" \"vite --port 5173\"",
     "start": "cross-env NODE_ENV=production node server/server.js",
-    "test:e2e": "playwright test",
+    "test:e2e": "playwright test --reporter=list",
     "test:e2e:ui": "playwright test --ui",
-    "test:e2e:headed": "playwright test --headed"
+    "test:e2e:headed": "playwright test --headed --reporter=list"
   },
   "dependencies": {
     "axios": "^1.7.0",
