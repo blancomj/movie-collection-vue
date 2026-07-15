@@ -22,7 +22,7 @@
             <i class="fas fa-play"></i> Ver Trailer
           </button>
           <button
-            v-if="!isLocalMovie"
+            v-if="!isLocalMovie || isWished"
             class="btn btn-secondary"
             :class="{ 'active-wish': isWished }"
             @click="toggleWish"
@@ -130,7 +130,7 @@ import { useFavoritesStore } from '@/stores/favorites'
 import { useWatchedStore } from '@/stores/watched'
 import { usePoster } from '@/composables/usePoster'
 import { useNotifications } from '@/composables/useNotifications'
-import { getMovieVideos, getTmdbMovie, getSimilarMovies, saveMovie } from '@/api/movies'
+import { getMovieVideos, getTmdbMovie, getSimilarMovies, saveMovie, deleteMovie } from '@/api/movies'
 import client from '@/api/client'
 import MovieHero from '@/components/movie/MovieHero.vue'
 import CastGrid from '@/components/movie/CastGrid.vue'
@@ -194,6 +194,10 @@ async function toggleWish() {
       isLocalMovie.value = true
     }
     const isNowWanted = await wishlist.toggle(movie.value.tmdb_id)
+    if (!isNowWanted && isLocalMovie.value) {
+      await deleteMovie(movie.value.tmdb_id)
+      isLocalMovie.value = false
+    }
     success(isNowWanted ? 'Agregado a deseadas' : 'Eliminado de deseadas')
   } catch (e) {
     console.error(e)
