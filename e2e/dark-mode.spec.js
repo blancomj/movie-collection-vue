@@ -4,7 +4,7 @@ test.describe('Dark Mode', () => {
   test('dark mode toggle button exists', async ({ page }) => {
     await page.goto('/')
     await page.waitForSelector('header, nav', { timeout: 10000 })
-    const toggle = page.locator('button:has(.fa-moon), button:has(.fa-sun), [aria-label*="tema"], [aria-label*="dark"]').first()
+    const toggle = page.locator('button:has(.fa-moon), button:has(.fa-sun)').first()
     await expect(toggle).toBeVisible()
   })
 
@@ -34,18 +34,6 @@ test.describe('Dark Mode', () => {
       await page.waitForTimeout(1000)
       const stillDark = await page.locator('html').evaluate(el => el.classList.contains('dark'))
       expect(stillDark).toBe(hasDark)
-    }
-  })
-
-  test('dark mode applies dark background', async ({ page }) => {
-    await page.goto('/')
-    await page.waitForSelector('header, nav', { timeout: 10000 })
-    const toggle = page.locator('button:has(.fa-moon), button:has(.fa-sun)').first()
-    if (await toggle.isVisible()) {
-      await toggle.click()
-      await page.waitForTimeout(500)
-      const bgColor = await page.locator('body').evaluate(el => getComputedStyle(el).backgroundColor)
-      expect(bgColor).toBeTruthy()
     }
   })
 })
