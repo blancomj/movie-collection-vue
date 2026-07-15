@@ -21,29 +21,6 @@
       />
     </div>
 
-    <div class="hidden lg:flex items-center justify-between mb-4">
-      <Pagination
-        :current-page="currentPage"
-        :total="moviesStore.filteredMovies.length"
-        :per-page="perPage"
-        @update:current-page="currentPage = $event"
-      />
-      <div class="flex items-center gap-1 ml-4 flex-shrink-0">
-        <span class="text-sm text-gray-500 dark:text-gray-400 mr-2">Vista:</span>
-        <button
-          v-for="cols in [3, 4, 5]"
-          :key="cols"
-          @click="ui.setGridCols(cols)"
-          class="w-8 h-8 rounded-lg border-2 flex items-center justify-center text-xs font-bold transition-colors"
-          :class="ui.gridCols === cols
-            ? 'bg-primary text-white border-primary'
-            : 'border-gray-200 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:border-primary hover:text-primary'"
-        >
-          {{ cols }}
-        </button>
-      </div>
-    </div>
-
     <LoadingSpinner v-if="moviesStore.loading" message="Cargando peliculas..." />
 
     <div v-else-if="moviesStore.error" class="text-center py-20 text-red-500">
