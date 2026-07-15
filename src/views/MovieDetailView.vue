@@ -30,6 +30,10 @@
             <i class="fas fa-bookmark"></i>
             {{ isWished ? 'Quitar de Deseadas' : 'Agregar a Deseadas' }}
           </button>
+          <WatchedButton
+            v-if="!isLocalMovie && !isWished"
+            :tmdb-id="movie?.tmdb_id"
+          />
         </div>
 
         <section class="detail-section">
@@ -120,6 +124,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { useMoviesStore } from '@/stores/movies'
 import { useWishlistStore } from '@/stores/wishlist'
 import { useFavoritesStore } from '@/stores/favorites'
+import { useWatchedStore } from '@/stores/watched'
 import { usePoster } from '@/composables/usePoster'
 import { useNotifications } from '@/composables/useNotifications'
 import { getMovieVideos, getTmdbMovie, getSimilarMovies, saveMovie } from '@/api/movies'
@@ -128,12 +133,14 @@ import MovieHero from '@/components/movie/MovieHero.vue'
 import CastGrid from '@/components/movie/CastGrid.vue'
 import TrailerModal from '@/components/movie/TrailerModal.vue'
 import LoadingSpinner from '@/components/ui/LoadingSpinner.vue'
+import WatchedButton from '@/components/ui/WatchedButton.vue'
 
 const route = useRoute()
 const router = useRouter()
 const moviesStore = useMoviesStore()
 const wishlist = useWishlistStore()
 const favorites = useFavoritesStore()
+const watched = useWatchedStore()
 const { getPoster, getBackdrop } = usePoster()
 const { success } = useNotifications()
 
@@ -273,9 +280,11 @@ function loadMovieData(id) {
     }
 
     wishlist.load().then(() => {
-      loadTrailer()
-      loadGallery()
-      loadSimilar()
+      watched.load().then(() => {
+        loadTrailer()
+        loadGallery()
+        loadSimilar()
+      })
     })
   })
 }

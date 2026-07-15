@@ -39,6 +39,14 @@ export function toggleWanted(tmdbId) {
   return client.patch(`/movies/${tmdbId}/wanted`)
 }
 
+export function getWatchedMovies() {
+  return client.get('/movies/watched')
+}
+
+export function toggleWatched(tmdbId) {
+  return client.patch(`/movies/${tmdbId}/watched`)
+}
+
 export function uploadFile(file) {
   const formData = new FormData()
   formData.append('file', file)

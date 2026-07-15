@@ -47,15 +47,18 @@ import { computed } from 'vue'
 import { useUiStore } from '@/stores/ui'
 import { useWishlistStore } from '@/stores/wishlist'
 import { useFavoritesStore } from '@/stores/favorites'
+import { useWatchedStore } from '@/stores/watched'
 
 const ui = useUiStore()
 const wishlist = useWishlistStore()
 const favorites = useFavoritesStore()
+const watched = useWatchedStore()
 
 const navItems = computed(() => [
   { to: '/', icon: 'fas fa-home', label: 'Inicio' },
   { to: '/favoritos', icon: 'fas fa-heart', label: 'Favoritos', badge: favorites.count || null },
   { to: '/deseadas', icon: 'fas fa-bookmark', label: 'Deseadas', badge: wishlist.count || null },
+  { to: '/vistas', icon: 'fas fa-eye', label: 'Vistas', badge: watched.count || null },
   { to: '/estadisticas', icon: 'fas fa-chart-bar', label: 'Estadisticas' },
   { to: '/configuracion', icon: 'fas fa-cog', label: 'Configuracion' }
 ])

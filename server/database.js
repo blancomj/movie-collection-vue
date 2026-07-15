@@ -95,6 +95,13 @@ function createTables() {
     } catch (e) {
         // Column already exists
     }
+
+    // Add watched column if not exists
+    try {
+        db.run(`ALTER TABLE movies ADD COLUMN watched INTEGER DEFAULT 0`);
+    } catch (e) {
+        // Column already exists
+    }
 }
 
 function getAllMovies() {
@@ -275,6 +282,28 @@ function isWanted(tmdbId) {
     return results[0].values[0][0] === 1;
 }
 
+function getWatchedMovies() {
+    const results = db.exec('SELECT * FROM movies WHERE watched = 1 ORDER BY original_title');
+    if (!results.length) return [];
+    return parseResults(results[0]).map(parseMovie);
+}
+
+function toggleWatched(tmdbId) {
+    const current = db.exec('SELECT watched FROM movies WHERE tmdb_id = ?', [tmdbId]);
+    if (!current.length || !current[0].values.length) return null;
+    const isWatched = current[0].values[0][0] ? 1 : 0;
+    const newVal = isWatched ? 0 : 1;
+    db.run('UPDATE movies SET watched = ?, updated_at = CURRENT_TIMESTAMP WHERE tmdb_id = ?', [newVal, tmdbId]);
+    saveDatabase();
+    return { watched: newVal === 1 };
+}
+
+function isWatched(tmdbId) {
+    const results = db.exec('SELECT watched FROM movies WHERE tmdb_id = ?', [tmdbId]);
+    if (!results.length || !results[0].values.length) return false;
+    return results[0].values[0][0] === 1;
+}
+
 function closeDatabase() {
     if (db) {
         saveDatabase();
@@ -298,5 +327,8 @@ module.exports = {
     getWantedMovies,
     toggleWanted,
     isWanted,
+    getWatchedMovies,
+    toggleWatched,
+    isWatched,
     closeDatabase
 };

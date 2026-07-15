@@ -5,6 +5,7 @@ const routes = [
   { path: '/movie/:id', name: 'movie', component: () => import('@/views/MovieDetailView.vue') },
   { path: '/favoritos', name: 'favorites', component: () => import('@/views/FavoritesView.vue') },
   { path: '/deseadas', name: 'wanted', component: () => import('@/views/WantedView.vue') },
+  { path: '/vistas', name: 'watched', component: () => import('@/views/WatchedView.vue') },
   { path: '/estadisticas', name: 'stats', component: () => import('@/views/StatsView.vue') },
   { path: '/configuracion', name: 'config', component: () => import('@/views/ConfigView.vue') }
 ]
