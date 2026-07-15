@@ -51,7 +51,7 @@
         >
           {{ g.name }}
         </span>
-        <span v-if="movie.runtime" class="text-[10px] text-gray-400 dark:text-gray-500 ml-auto flex items-center gap-0.5">
+        <span v-if="movie.runtime" class="text-xs text-gray-400 dark:text-gray-500 ml-auto flex items-center gap-0.5">
           <i class="fas fa-clock"></i> {{ movie.runtime }}min
         </span>
       </div>
