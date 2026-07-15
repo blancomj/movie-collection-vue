@@ -19,9 +19,9 @@ export default defineConfig({
     { name: 'chromium', use: { browserName: 'chromium' } }
   ],
   webServer: {
-    command: 'npx vite --port 5173',
+    command: 'npm run dev:all',
     url: 'http://localhost:5173/peliculas',
     reuseExistingServer: !process.env.CI,
-    timeout: 60000
+    timeout: 90000
   }
 })
