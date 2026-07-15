@@ -21,11 +21,11 @@ const props = defineProps({
 
 const gridClass = computed(() => {
   const colMap = {
-    1: 'md:grid-cols-1',
-    2: 'md:grid-cols-2',
-    3: 'md:grid-cols-3',
-    4: 'md:grid-cols-4'
+    1: 'grid-cols-1 md:grid-cols-1',
+    2: 'grid-cols-2 md:grid-cols-2',
+    3: 'grid-cols-3 md:grid-cols-3',
+    4: 'grid-cols-4 md:grid-cols-4'
   }
-  return `grid-cols-2 ${colMap[props.gridCols] || 'md:grid-cols-2'} lg:grid-cols-4`
+  return `${colMap[props.gridCols] || 'grid-cols-2 md:grid-cols-2'} lg:grid-cols-4`
 })
 </script>
