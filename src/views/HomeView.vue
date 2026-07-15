@@ -60,7 +60,7 @@ const moviesStore = useMoviesStore()
 const ui = useUiStore()
 
 const currentPage = ref(1)
-const perPage = ref(20)
+const perPage = ref(40)
 
 const paginatedMovies = computed(() => {
   const start = (currentPage.value - 1) * perPage.value
