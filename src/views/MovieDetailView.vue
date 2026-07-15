@@ -33,6 +33,9 @@
           <WatchedButton
             v-if="!isWished"
             :tmdb-id="movie?.tmdb_id"
+            :movie="movie"
+            :is-local="isLocalMovie"
+            @saved="isLocalMovie = true"
           />
         </div>
 
