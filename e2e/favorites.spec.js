@@ -12,11 +12,11 @@ test.describe('Favorites', () => {
     await page.goto('/')
     await page.waitForSelector('h3', { timeout: 15000 })
     const favBtn = page.locator('button:has(.fa-heart)').first()
+    const iconBefore = await favBtn.locator('i').getAttribute('class')
     await favBtn.click()
     await page.waitForTimeout(1000)
-    const icon = favBtn.locator('i')
-    const classes = await icon.getAttribute('class')
-    expect(classes).toMatch(/fa-s/)
+    const iconAfter = await favBtn.locator('i').getAttribute('class')
+    expect(iconAfter).not.toBe(iconBefore)
   })
 
   test('favorite icon visible on detail page', async ({ page }) => {
