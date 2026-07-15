@@ -6,3 +6,6 @@ server/upload_temp.txt
 .env
 .DS_Store
 Thumbs.db
+test-results/
+playwright-report/
+blob-report/
