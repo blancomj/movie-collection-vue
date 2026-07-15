@@ -77,6 +77,7 @@
         class="flex items-center gap-3 p-2 bg-white dark:bg-[#1e1e2f] rounded-lg shadow-sm cursor-pointer hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
         @click="$router.push({ name: 'movie', params: { id: movie.tmdb_id } })"
       >
+        <span class="text-xs text-gray-400 dark:text-gray-500 w-5 text-center flex-shrink-0">{{ startIndex + index + 1 }}</span>
         <img
           v-if="getPoster(movie)"
           :src="getPoster(movie, 'w92')"
@@ -88,7 +89,21 @@
         </div>
         <div class="flex-1 min-w-0">
           <div class="font-medium text-sm text-gray-800 dark:text-gray-200 truncate">{{ movie.title }}</div>
-          <div class="text-xs text-gray-400 dark:text-gray-500">{{ movie.year || '-' }}</div>
+          <div class="flex items-center gap-2 text-xs text-gray-400 dark:text-gray-500">
+            <span>{{ movie.year || '-' }}</span>
+            <span v-if="movie.vote_average" class="text-yellow-500">
+              <i class="fas fa-star text-[10px]"></i> {{ movie.vote_average.toFixed(1) }}
+            </span>
+          </div>
+          <div class="flex flex-wrap gap-1 mt-1">
+            <span
+              v-for="g in parseGenres(movie.genres).slice(0, 2)"
+              :key="g.id || g"
+              class="px-1 py-0.5 text-[9px] font-medium rounded bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400"
+            >
+              {{ g.name || g }}
+            </span>
+          </div>
         </div>
       </div>
     </div>
