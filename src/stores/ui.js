@@ -4,6 +4,7 @@ import { ref } from 'vue'
 export const useUiStore = defineStore('ui', () => {
   const drawerOpen = ref(false)
   const gridCols = ref(parseInt(localStorage.getItem('gridCols') || '2'))
+  const viewMode = ref(localStorage.getItem('viewMode') || 'grid')
   const isDark = ref(false)
   const notifications = ref([])
 
@@ -45,6 +46,11 @@ export const useUiStore = defineStore('ui', () => {
     localStorage.setItem('gridCols', cols.toString())
   }
 
+  function setViewMode(mode) {
+    viewMode.value = mode
+    localStorage.setItem('viewMode', mode)
+  }
+
   function notify(message, type = 'info', duration = 3000) {
     const id = ++notifId
     notifications.value.push({ id, message, type })
@@ -60,8 +66,8 @@ export const useUiStore = defineStore('ui', () => {
   function notifyInfo(msg) { notify(msg, 'info') }
 
   return {
-    drawerOpen, gridCols, isDark, notifications,
-    initTheme, toggleTheme, openDrawer, closeDrawer, setGridCols,
+    drawerOpen, gridCols, viewMode, isDark, notifications,
+    initTheme, toggleTheme, openDrawer, closeDrawer, setGridCols, setViewMode,
     notify, notifySuccess, notifyError, notifyInfo
   }
 })

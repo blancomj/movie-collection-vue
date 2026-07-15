@@ -42,19 +42,28 @@
           <div class="px-5 py-2 flex gap-2">
             <button
               class="flex-1 py-2 rounded-lg text-sm font-medium border-2 transition-colors"
-              :class="gridCols === 2
+              :class="viewMode === 'list'
                 ? 'bg-primary text-white border-primary'
                 : 'border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:border-primary hover:text-primary'"
-              @click="setGridCols(2)"
+              @click="setViewMode('list')"
+            >
+              <i class="fas fa-list"></i> Lista
+            </button>
+            <button
+              class="flex-1 py-2 rounded-lg text-sm font-medium border-2 transition-colors"
+              :class="gridCols === 2 && viewMode === 'grid'
+                ? 'bg-primary text-white border-primary'
+                : 'border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:border-primary hover:text-primary'"
+              @click="setGridColsAndView(2)"
             >
               <i class="fas fa-th"></i> 2 cols
             </button>
             <button
               class="flex-1 py-2 rounded-lg text-sm font-medium border-2 transition-colors"
-              :class="gridCols === 1
+              :class="gridCols === 1 && viewMode === 'grid'
                 ? 'bg-primary text-white border-primary'
                 : 'border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:border-primary hover:text-primary'"
-              @click="setGridCols(1)"
+              @click="setGridColsAndView(1)"
             >
               <i class="fas fa-list"></i> 1 col
             </button>
@@ -101,14 +110,23 @@ const favorites = useFavoritesStore()
 const watched = useWatchedStore()
 
 const gridCols = computed(() => ui.gridCols)
+const viewMode = computed(() => ui.viewMode)
 
 function setGridCols(cols) {
   ui.setGridCols(cols)
 }
 
+function setViewMode(mode) {
+  ui.setViewMode(mode)
+}
+
+function setGridColsAndView(cols) {
+  ui.setGridCols(cols)
+  ui.setViewMode('grid')
+}
+
 const navItems = computed(() => [
   { to: '/', icon: 'fas fa-home', label: 'Inicio' },
-  { to: '/lista', icon: 'fas fa-list', label: 'Lista' },
   { to: '/favoritos', icon: 'fas fa-heart', label: 'Favoritos', badge: favorites.count || null },
   { to: '/deseadas', icon: 'fas fa-bookmark', label: 'Deseadas' },
   { to: '/vistas', icon: 'fas fa-eye', label: 'Vistas', badge: watched.count || null },

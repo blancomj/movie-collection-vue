@@ -34,7 +34,8 @@
         <span class="text-sm text-gray-500">{{ moviesStore.filteredMovies.length }} peliculas</span>
       </div>
 
-      <MovieGrid :movies="paginatedMovies" :grid-cols="ui.gridCols" />
+      <MovieList v-if="ui.viewMode === 'list'" :movies="paginatedMovies" :start-index="(currentPage - 1) * perPage" />
+      <MovieGrid v-else :movies="paginatedMovies" :grid-cols="ui.gridCols" />
 
       <Pagination
         :current-page="currentPage"
@@ -55,6 +56,7 @@ import FilterControls from '@/components/ui/FilterControls.vue'
 import LoadingSpinner from '@/components/ui/LoadingSpinner.vue'
 import Pagination from '@/components/ui/Pagination.vue'
 import MovieGrid from '@/components/movie/MovieGrid.vue'
+import MovieList from '@/components/movie/MovieList.vue'
 
 const moviesStore = useMoviesStore()
 const ui = useUiStore()

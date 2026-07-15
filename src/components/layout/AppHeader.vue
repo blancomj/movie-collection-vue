@@ -24,6 +24,14 @@
 
         <button
           class="flex items-center justify-center w-9 h-9 rounded-full text-white/90 hover:text-white hover:bg-white/10 transition-colors ml-1"
+          :title="ui.viewMode === 'grid' ? 'Vista lista' : 'Vista cuadricula'"
+          @click="ui.setViewMode(ui.viewMode === 'grid' ? 'list' : 'grid')"
+        >
+          <i :class="ui.viewMode === 'grid' ? 'fas fa-list' : 'fas fa-th'"></i>
+        </button>
+
+        <button
+          class="flex items-center justify-center w-9 h-9 rounded-full text-white/90 hover:text-white hover:bg-white/10 transition-colors ml-1"
           :title="ui.isDark ? 'Modo claro' : 'Modo oscuro'"
           @click="ui.toggleTheme()"
         >
@@ -56,7 +64,6 @@ const watched = useWatchedStore()
 
 const navItems = computed(() => [
   { to: '/', icon: 'fas fa-home', label: 'Inicio' },
-  { to: '/lista', icon: 'fas fa-list', label: 'Lista' },
   { to: '/favoritos', icon: 'fas fa-heart', label: 'Favoritos', badge: favorites.count || null },
   { to: '/deseadas', icon: 'fas fa-bookmark', label: 'Deseadas', badge: wishlist.count || null },
   { to: '/vistas', icon: 'fas fa-eye', label: 'Vistas', badge: watched.count || null },
