@@ -13,9 +13,8 @@ test.describe('Movie Detail', () => {
     await page.goto('/')
     await page.waitForSelector('h3', { timeout: 15000 })
     await page.locator('h3').first().click()
-    await page.waitForSelector('text=Sinopsis', { timeout: 10000 })
-    const poster = page.locator('.poster-image, img[alt]').first()
-    await expect(poster).toBeVisible()
+    await page.waitForSelector('.poster-image', { timeout: 10000 })
+    await expect(page.locator('.poster-image').first()).toBeVisible()
   })
 
   test('detail page shows movie title', async ({ page }) => {
@@ -23,8 +22,8 @@ test.describe('Movie Detail', () => {
     await page.waitForSelector('h3', { timeout: 15000 })
     const firstTitle = await page.locator('h3').first().textContent()
     await page.locator('h3').first().click()
-    await page.waitForSelector('.movie-title, h1', { timeout: 10000 })
-    const detailTitle = await page.locator('.movie-title, h1').first().textContent()
+    await page.waitForSelector('.movie-title', { timeout: 10000 })
+    const detailTitle = await page.locator('.movie-title').first().textContent()
     expect(detailTitle).toContain(firstTitle.trim().substring(0, 10))
   })
 
