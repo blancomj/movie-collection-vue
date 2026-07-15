@@ -10,7 +10,7 @@
     </div>
 
     <div v-else-if="movie">
-      <MovieHero :movie="movie" :poster="poster" :backdrop="backdrop" />
+      <MovieHero :movie="movie" :poster="poster" :backdrop="backdrop" :is-local="isLocalMovie" />
 
       <div class="details-body">
         <div class="detail-section mobile-trailer-row">
@@ -137,6 +137,7 @@ import CastGrid from '@/components/movie/CastGrid.vue'
 import TrailerModal from '@/components/movie/TrailerModal.vue'
 import LoadingSpinner from '@/components/ui/LoadingSpinner.vue'
 import WatchedButton from '@/components/ui/WatchedButton.vue'
+import FavoriteButton from '@/components/ui/FavoriteButton.vue'
 
 const route = useRoute()
 const router = useRouter()

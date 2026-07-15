@@ -3,6 +3,7 @@
     <div class="backdrop-overlay"></div>
     <div class="backdrop-content">
       <div class="poster-container">
+        <FavoriteButton :tmdb-id="movie.tmdb_id" :movie="movie" :is-local="isLocal" />
         <img v-if="poster" :src="poster" :alt="movie.title" class="poster-image" />
         <div v-else class="poster-fallback">
           <i class="fas fa-film"></i>
@@ -26,11 +27,13 @@
 
 <script setup>
 import { computed } from 'vue'
+import FavoriteButton from '@/components/ui/FavoriteButton.vue'
 
 const props = defineProps({
   movie: { type: Object, required: true },
   poster: { type: String, default: null },
-  backdrop: { type: String, default: null }
+  backdrop: { type: String, default: null },
+  isLocal: { type: Boolean, default: false }
 })
 
 const heroStyle = computed(() => {
