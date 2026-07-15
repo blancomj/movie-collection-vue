@@ -4,10 +4,10 @@ export default defineConfig({
   testDir: './e2e',
   timeout: 60000,
   expect: { timeout: 10000 },
-  fullyParallel: true,
+  fullyParallel: false,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
+  workers: 1,
   reporter: [['html', { open: 'never' }], ['list']],
   use: {
     baseURL: 'http://localhost:5173/peliculas',
@@ -19,9 +19,9 @@ export default defineConfig({
     { name: 'chromium', use: { browserName: 'chromium' } }
   ],
   webServer: {
-    command: 'npm run dev',
+    command: 'npx vite --port 5173',
     url: 'http://localhost:5173/peliculas',
     reuseExistingServer: !process.env.CI,
-    timeout: 30000
+    timeout: 60000
   }
 })
