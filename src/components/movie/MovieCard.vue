@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-white dark:bg-[#1e1e2f] rounded-card overflow-hidden shadow-sm hover:shadow-lg dark:hover:shadow-primary/10 transition-all duration-300 cursor-pointer hover:-translate-y-2"
+    class="bg-white dark:bg-[#1e1e2f] rounded-card overflow-hidden shadow-sm hover:shadow-lg dark:hover:shadow-primary/10 transition-all duration-300 cursor-pointer hover:-translate-y-2 lg:hover:scale-105 lg:hover:z-20 relative"
     @click="router.push({ name: 'movie', params: { id: movie.tmdb_id } })"
   >
     <div class="aspect-[2/3] bg-gray-100 dark:bg-gray-800 relative overflow-hidden">
@@ -31,7 +31,7 @@
       </div>
 
       <div class="absolute inset-x-0 bottom-0 h-full bg-gradient-to-t from-black/90 via-black/50 to-transparent flex flex-col justify-end p-3 opacity-0 max-sm:hidden lg:hover:opacity-100 transition-opacity duration-300">
-        <p class="text-white text-sm leading-relaxed line-clamp-6" style="text-shadow: 0 1px 3px rgba(0,0,0,0.8);">
+        <p class="text-white text-sm leading-relaxed line-clamp-9" style="text-shadow: 0 1px 3px rgba(0,0,0,0.8);">
           {{ movie.overview || 'Sin sinopsis disponible.' }}
         </p>
         <span class="text-primary text-[10px] font-semibold mt-1.5 flex items-center gap-1">
