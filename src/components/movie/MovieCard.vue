@@ -43,13 +43,16 @@
     <div class="p-3">
       <h3 class="font-bold text-base text-gray-800 dark:text-gray-200 line-clamp-1">{{ movie.title }}</h3>
       <p v-if="movie.original_title !== movie.title" class="text-sm text-gray-500 dark:text-gray-400 line-clamp-1">{{ movie.original_title }}</p>
-      <div class="flex flex-wrap gap-1 mt-1.5">
+      <div class="flex flex-wrap items-center gap-1 mt-1.5">
         <span
           v-for="g in (movie.genres || []).slice(0, 2)"
           :key="g.id"
           class="px-1.5 py-0.5 text-[10px] font-medium rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400"
         >
           {{ g.name }}
+        </span>
+        <span v-if="movie.runtime" class="text-[10px] text-gray-400 dark:text-gray-500 ml-auto flex items-center gap-0.5">
+          <i class="fas fa-clock"></i> {{ movie.runtime }}min
         </span>
       </div>
       <p v-if="movie.overview" class="text-sm text-gray-600 dark:text-gray-300 mt-1.5 line-clamp-3 leading-relaxed lg:hidden">{{ movie.overview }}</p>
