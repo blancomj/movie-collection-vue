@@ -6,6 +6,7 @@ const routes = [
   { path: '/favoritos', name: 'favorites', component: () => import('@/views/FavoritesView.vue') },
   { path: '/deseadas', name: 'wanted', component: () => import('@/views/WantedView.vue') },
   { path: '/vistas', name: 'watched', component: () => import('@/views/WatchedView.vue') },
+  { path: '/lista', name: 'lista', component: () => import('@/views/ListaView.vue') },
   { path: '/estadisticas', name: 'stats', component: () => import('@/views/StatsView.vue') },
   { path: '/configuracion', name: 'config', component: () => import('@/views/ConfigView.vue') }
 ]

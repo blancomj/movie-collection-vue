@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div
-      class="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
-    >
+    <div class="grid gap-4" :class="gridClass">
       <MovieCard v-for="movie in movies" :key="movie.tmdb_id" :movie="movie" />
     </div>
     <div v-if="movies.length === 0" class="text-center py-16 text-gray-400 dark:text-gray-500">
@@ -13,10 +11,21 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
 import MovieCard from './MovieCard.vue'
 
-defineProps({
+const props = defineProps({
   movies: { type: Array, default: () => [] },
   gridCols: { type: Number, default: 2 }
+})
+
+const gridClass = computed(() => {
+  const colMap = {
+    1: 'grid-cols-1',
+    2: 'grid-cols-2',
+    3: 'grid-cols-3',
+    4: 'grid-cols-4'
+  }
+  return colMap[props.gridCols] || 'grid-cols-2'
 })
 </script>

@@ -108,6 +108,7 @@ function setGridCols(cols) {
 
 const navItems = computed(() => [
   { to: '/', icon: 'fas fa-home', label: 'Inicio' },
+  { to: '/lista', icon: 'fas fa-list', label: 'Lista' },
   { to: '/favoritos', icon: 'fas fa-heart', label: 'Favoritos', badge: favorites.count || null },
   { to: '/deseadas', icon: 'fas fa-bookmark', label: 'Deseadas' },
   { to: '/vistas', icon: 'fas fa-eye', label: 'Vistas', badge: watched.count || null },
