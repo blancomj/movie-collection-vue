@@ -31,7 +31,7 @@
             {{ isWished ? 'Quitar de Deseadas' : 'Agregar a Deseadas' }}
           </button>
           <WatchedButton
-            v-if="!isLocalMovie && !isWished"
+            v-if="!isWished"
             :tmdb-id="movie?.tmdb_id"
           />
         </div>
